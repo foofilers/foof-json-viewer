@@ -1,4 +1,4 @@
-import {Component, OnChanges, Input, Output, EventEmitter} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
 export interface FoofJsonSegment {
   parent: FoofJsonSegment | undefined;
@@ -15,7 +15,8 @@ type IsSegmentClickableFn = (segment: FoofJsonSegment) => boolean;
 @Component({
   selector: 'foof-json-viewer',
   templateUrl: './foof-json-viewer.component.html',
-  styleUrls: ['./foof-json-viewer.component.scss']
+  styleUrls: ['./foof-json-viewer.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class FoofJsonViewerComponent implements OnChanges {
 
