@@ -1,0 +1,152 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "foof-json-viewer": {
+      "projectType": "library",
+      "root": "projects/foof-json-viewer",
+      "sourceRoot": "projects/foof-json-viewer/src",
+      "prefix": "foof",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/foof-json-viewer/tsconfig.lib.json",
+            "project": "projects/foof-json-viewer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/foof-json-viewer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/foof-json-viewer/src/test.ts",
+            "tsConfig": "projects/foof-json-viewer/tsconfig.spec.json",
+            "karmaConfig": "projects/foof-json-viewer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/foof-json-viewer/tsconfig.lib.json",
+              "projects/foof-json-viewer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "foof-json-viewer-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/foof-json-viewer-demo",
+      "sourceRoot": "projects/foof-json-viewer-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/foof-json-viewer-demo",
+            "index": "projects/foof-json-viewer-demo/src/index.html",
+            "main": "projects/foof-json-viewer-demo/src/main.ts",
+            "polyfills": "projects/foof-json-viewer-demo/src/polyfills.ts",
+            "tsConfig": "projects/foof-json-viewer-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/foof-json-viewer-demo/src/favicon.ico",
+              "projects/foof-json-viewer-demo/src/assets"
+            ],
+            "styles": [
+              "projects/foof-json-viewer-demo/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/foof-json-viewer-demo/src/environments/environment.ts",
+                  "with": "projects/foof-json-viewer-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "foof-json-viewer-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "foof-json-viewer-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "foof-json-viewer-demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/foof-json-viewer-demo/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/foof-json-viewer-demo/e2e/protractor.conf.js",
+            "devServerTarget": "foof-json-viewer-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "foof-json-viewer-demo:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "45cd01da-f045-4b83-9d20-6bfd4d4f3625"
+  },
+  "defaultProject": "foof-json-viewer"
+}

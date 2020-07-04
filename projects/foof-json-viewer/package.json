@@ -1,0 +1,26 @@
+{
+  "name": "foof-json-viewer",
+  "version": "2.0.0",
+  "description": "JSON viewer for Angular",
+  "keywords": [
+    "angular",
+    "json"
+  ],
+  "author": "Igor Maculan <n3wtron@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foofilers/foof-json-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/foofilers/foof-json-viewer/issues"
+  },
+  "homepage": "https://github.com/foofilers/foof-json-viewer#readme",
+  "peerDependencies": {
+    "@angular/common": "^9.1.11",
+    "@angular/core": "^9.1.11"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}

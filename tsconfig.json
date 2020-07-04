@@ -1,32 +1,29 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": true,
-    "stripInternal": true,
-    "experimentalDecorators": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "paths": {
-      "@angular/core": ["node_modules/@angular/core"],
-      "rxjs/*": ["node_modules/rxjs/*"]
-    },
-    "rootDir": ".",
-    "outDir": "dist",
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "inlineSources": true,
-    "target": "es5",
-    "skipLibCheck": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
     "lib": [
-      "es2015",
+      "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "foof-json-viewer": [
+        "dist/foof-json-viewer/foof-json-viewer",
+        "dist/foof-json-viewer"
+      ]
+    }
   },
-  "files": [
-    "index.ts"
-  ],
   "angularCompilerOptions": {
-    "strictMetadataEmit": true
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

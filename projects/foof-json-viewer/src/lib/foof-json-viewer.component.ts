@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 
 export interface FoofJsonSegment {
   parent: FoofJsonSegment | undefined;
@@ -15,14 +15,14 @@ type IsSegmentClickableFn = (segment: FoofJsonSegment) => boolean;
 @Component({
   selector: 'foof-json-viewer',
   templateUrl: './foof-json-viewer.component.html',
-  styleUrls: ['./foof-json-viewer.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  styleUrls: ['./foof-json-viewer.component.scss']
 })
 export class FoofJsonViewerComponent implements OnChanges {
 
   @Input() json: any;
   @Input() expanded = true;
   @Input() isSegmentClickable: IsSegmentClickableFn;
+  // tslint:disable-next-line:variable-name
   @Input() _parent: FoofJsonSegment | undefined = undefined;
   @Output() segmentClicked = new EventEmitter<FoofJsonSegment>();
 
@@ -60,8 +60,8 @@ export class FoofJsonViewerComponent implements OnChanges {
     const segment: FoofJsonSegment = {
       parent: this._parent,
       path: this._parent ? `${this._parent.path}.${key}` : key,
-      key: key,
-      value: value,
+      key,
+      value,
       type: undefined,
       description: '' + value,
       expanded: this.expanded
