@@ -15,7 +15,7 @@
       <ng-container *ngIf="!segment.expanded || !isExpandable(segment)">
         <div *ngIf="isClickable(segment); then clickableDesc else noClickableDesc"></div>
         <ng-template #clickableDesc>
-          <a class="segment-value" (click)="segmentClickHandler(segment)">{{ segment.description }}</a>
+          <a class="segment-value" (click)="segmentClickHandler(segment, $event)">{{ segment.description }}</a>
         </ng-template>
         <ng-template #noClickableDesc>
           <span class="segment-value">{{ segment.description }}</span>
@@ -24,10 +24,10 @@
     </section>
     <section *ngIf="segment.expanded && isExpandable(segment)" class="children">
       <foof-json-viewer [json]="segment.value"
-                       [expanded]="expanded"
-                       [_parent]="segment"
-                       [isSegmentClickable]="isSegmentClickable"
-                       (segmentClicked)="segmentClickHandler($event)"></foof-json-viewer>
+                        [expanded]="expanded"
+                        [_parent]="segment"
+                        [isSegmentClickable]="isSegmentClickable"
+                        (segmentClicked)="subViewerClickHandler($event)"></foof-json-viewer>
     </section>
   </section>
 </section>

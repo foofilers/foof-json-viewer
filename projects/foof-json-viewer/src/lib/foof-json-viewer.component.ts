@@ -10,6 +10,11 @@ export interface FoofJsonSegment {
   path: string;
 }
 
+export interface FoofJsonViewerComponentClickEvent {
+  segment: FoofJsonSegment;
+  mouseEvent: MouseEvent;
+}
+
 type IsSegmentClickableFn = (segment: FoofJsonSegment) => boolean;
 
 @Component({
@@ -24,7 +29,7 @@ export class FoofJsonViewerComponent implements OnChanges {
   @Input() isSegmentClickable: IsSegmentClickableFn;
   // tslint:disable-next-line:variable-name
   @Input() _parent: FoofJsonSegment | undefined = undefined;
-  @Output() segmentClicked = new EventEmitter<FoofJsonSegment>();
+  @Output() segmentClicked = new EventEmitter<FoofJsonViewerComponentClickEvent>();
 
   segments: FoofJsonSegment[] = [];
 
@@ -48,8 +53,12 @@ export class FoofJsonViewerComponent implements OnChanges {
     }
   }
 
-  segmentClickHandler(segment: FoofJsonSegment) {
-    this.segmentClicked.emit(segment);
+  subViewerClickHandler(clickEvent: FoofJsonViewerComponentClickEvent) {
+    this.segmentClicked.emit(clickEvent);
+  }
+
+  segmentClickHandler(segment: FoofJsonSegment, event: MouseEvent) {
+    this.segmentClicked.emit({segment, mouseEvent: event});
   }
 
   isClickable(segment: FoofJsonSegment): boolean {

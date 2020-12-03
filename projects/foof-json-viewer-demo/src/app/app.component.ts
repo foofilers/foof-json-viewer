@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FoofJsonSegment} from '../../../foof-json-viewer/src/lib/foof-json-viewer.component';
+import {FoofJsonSegment, FoofJsonViewerComponentClickEvent} from '../../../foof-json-viewer/src/lib/foof-json-viewer.component';
 
 const userIdRe = new RegExp('students\.\\d*\.id');
 
@@ -21,9 +21,9 @@ export class AppComponent {
     return userIdRe.test(segment.path);
   }
 
-  segmentClickHandler(segment: FoofJsonSegment) {
-    if (userIdRe.test(segment.path)) {
-      this.message = `you have clicked on user with id:${segment.value}`;
+  segmentClickHandler(segmentEvent: FoofJsonViewerComponentClickEvent) {
+    if (userIdRe.test(segmentEvent.segment.path)) {
+      this.message = `you have clicked on user with id:${segmentEvent.segment.value} ctrlPressed:${segmentEvent.mouseEvent.ctrlKey}`;
     }
   }
 }
