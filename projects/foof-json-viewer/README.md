@@ -1,6 +1,6 @@
 # foof-json-viewer
 
-JSON viewer for Angular 
+JSON viewer for Angular
 
 Live demo: https://stackblitz.com/edit/foof-json-viewer
 
@@ -20,10 +20,10 @@ import { FoofJsonViewerModule } from 'foof-json-viewer';
   ...,
   imports: [
     ...,
-    FoofJsonViewerModule,
-    ...
-  ],
+  FoofJsonViewerModule,
   ...
+],
+...
 })
 export class AppModule { }
 ```
@@ -42,21 +42,21 @@ To make the segment clickable
 
 HTML
 ```html
-<foof-json-viewer [json]="someObject" 
-    [isSegmentClickable]="isClickable"
-    (segmentClicked)="segmentClickHandler($event)"></foof-json-viewer>
+<foof-json-viewer [json]="someObject"
+                  [isSegmentClickable]="isClickable"
+                  (segmentClicked)="segmentClickHandler($event)"></foof-json-viewer>
 ```
 TS
 ```typescript
 const someObject = {users:[{id:123, name:"user1"},{id:234, name:"user2"}]};
 
 function isClickable(segment:FoofJsonSegment):boolean{
-    return segment.path === "users.0.id";
+  return segment.path === "users.0.id";
 }
-function segmentClickHandler(segment:FoofJsonSegment){
-    if (segment.path === "users.0.id"){
-        console.log(`the userId is ${segment.value}`);
-    }
+function segmentClickHandler(segmentClick:FoofJsonViewerComponentClickEvent){
+  if (segmentClick.segment.path === "users.0.id"){
+    console.log(`the userId is ${segmentClick.segment.value}`);
+  }
 }
 ```
 
